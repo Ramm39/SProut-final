@@ -38,12 +38,20 @@
   min-height: 0;
 }
 
+@media (max-width: 1100px) and (min-width: 901px) {
+  .experience-content-wrap {
+    grid-template-columns: 38% 62%;
+    gap: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .experience-cards-wrap {
+    --card-width: min(calc((100% - var(--card-gap)) / 1.18), 520px);
+  }
+}
+
 @media (max-width: 900px) {
   .experience-content-wrap {
     grid-template-columns: 1fr;
-  }
-  .experience-categories {
-    --card-width: min(420px, 100%);
   }
 }
 
@@ -120,7 +128,8 @@
   min-width: 0;
   position: relative;
   z-index: 3;
-  padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 1.5rem) clamp(0.75rem, 2vw, 1.5rem) 0;
+  padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 1.5rem)
+    clamp(0.75rem, 2vw, 1.5rem) 0;
   height: 100%;
   box-sizing: border-box;
 }
@@ -332,7 +341,7 @@
 
 /* Title – one line, bold uppercase */
 .experience-card-title {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
   font-weight: 700;
   font-style: normal;
   color: #000;
@@ -408,9 +417,21 @@
   word-break: break-word;
 }
 
+/* Stacked layout: card uses almost full row; small peek keeps carousel affordance */
 @media (max-width: 900px) {
   .experience-cards-wrap {
-    --card-width: min(calc(100% - var(--card-gap)), 420px);
+    --carousel-peek: clamp(1.75rem, 7vw, 3rem);
+    --card-width: calc(100% - var(--carousel-peek));
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience-cards-wrap {
+    --carousel-peek: clamp(1rem, 5vw, 2rem);
+    --card-width: calc(100% - var(--carousel-peek));
   }
 }
 

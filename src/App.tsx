@@ -223,8 +223,9 @@ function App() {
                               role="tab"
                               aria-selected={index === activeMission}
                               aria-controls={`mission-panel-${item.id}`}
+                              tabIndex={index === activeMission ? 0 : -1}
                               id={`mission-tab-${item.id}`}
-                              className={`mission-trigger ${index === activeMission ? 'mission-trigger-active' : ''}`}
+                              className="mission-trigger"
                               onClick={() => setActiveMission(index)}
                             >
                               <span className="mission-trigger-icon">
@@ -247,10 +248,12 @@ function App() {
                               id={`mission-panel-${item.id}`}
                               role="tabpanel"
                               aria-labelledby={`mission-tab-${item.id}`}
-                              hidden={index !== activeMission}
-                              className={`mission-panel ${index === activeMission ? 'mission-panel-active' : ''}`}
+                              aria-hidden={index !== activeMission}
+                              className="mission-panel-wrap"
                             >
-                              <p className="mission-panel-description">{item.description}</p>
+                              <div className="mission-panel-inner">
+                                <p className="mission-panel-description">{item.description}</p>
+                              </div>
                             </div>
                           </li>
                         ))}

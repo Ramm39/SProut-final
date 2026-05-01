@@ -473,12 +473,16 @@ main {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1.04);
   pointer-events: none;
 }
 
 .mission-image-wrap.mission-image-active {
   opacity: 1;
+  transform: scale(1);
   pointer-events: auto;
   z-index: 1;
 }
@@ -584,7 +588,8 @@ main {
 
 .mission-item {
   border-radius: 10px;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -609,7 +614,9 @@ main {
   text-align: left;
   font: inherit;
   color: #282828;
-  transition: color 0.2s ease, background 0.2s ease;
+  transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
   outline: none;
   box-sizing: border-box;
 }
@@ -657,34 +664,44 @@ main {
   text-transform: capitalize;
 }
 
-.mission-panel {
-  display: none;
-  padding: 0 1rem 1rem;
-  padding-left: calc(1rem + 1.5rem + 0.75rem);
-  margin: 0;
-  overflow: hidden;
+/* Smooth expand/collapse (Vantara-style) – no display:none so height can animate */
+.mission-panel-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1);
   box-sizing: border-box;
 }
 
-.mission-panel[hidden] {
-  display: none !important;
+.mission-item-active > .mission-panel-wrap {
+  grid-template-rows: 1fr;
 }
 
-.mission-item-active .mission-panel {
-  display: block;
-  padding-bottom: clamp(1rem, 2vw, 1.35rem);
-  animation: missionTextIn 0.4s ease-out forwards;
+.mission-panel-inner {
+  overflow: hidden;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
 /* Description – regular weight, smaller, dark gray, align with title (not icon), generous line height */
 .mission-panel-description {
   margin: 0;
   margin-top: 0.35em;
+  padding: 0 1rem clamp(1rem, 2vw, 1.35rem);
+  padding-left: calc(1rem + 1.5rem + 0.75rem);
   font-size: clamp(0.95rem, 1.5vw, 1.1rem);
   font-weight: 400;
   line-height: 1.65;
   color: #555555;
   max-width: 42ch;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+}
+
+.mission-item-active .mission-panel-description {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (min-width: 768px) {
@@ -692,25 +709,46 @@ main {
     width: clamp(1.6rem, 2.5vw, 2rem);
     height: clamp(1.6rem, 2.5vw, 2rem);
   }
-  .mission-panel {
+  .mission-panel-description {
     padding-left: calc(1.15rem + 2rem + 1rem);
   }
 }
 
 @media (min-width: 1024px) {
-  .mission-panel {
+  .mission-panel-description {
     padding-left: calc(1.15rem + 2rem + 1.1rem);
   }
 }
 
-@keyframes missionTextIn {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
+@media (prefers-reduced-motion: reduce) {
+  .mission-image-wrap {
+    transition: opacity 0.25s ease;
+    transform: none;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .mission-image-wrap.mission-image-active {
+    transform: none;
+  }
+
+  .mission-item {
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mission-trigger {
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .mission-panel-wrap {
+    transition: none;
+  }
+
+  .mission-panel-description {
+    transition: opacity 0.2s ease;
+    transform: none;
+  }
+
+  .mission-item-active .mission-panel-description {
+    transform: none;
   }
 }
 
