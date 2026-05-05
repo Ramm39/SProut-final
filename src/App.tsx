@@ -287,16 +287,14 @@ function App() {
                     </div>
                     <div className="our-story-media">
                       <div className="our-story-media-inner">
-                        <img
-                          src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=85"
-                          alt=""
+                        <video
+                          src="/ourstory.mp4"
                           className="our-story-media-img"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
                         />
-                        <div className="our-story-play" aria-hidden>
-                          <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -308,23 +306,21 @@ function App() {
                     <h2 className="get-in-touch-heading">GET IN TOUCH</h2>
                     <div className="get-in-touch-media">
                       <div className="get-in-touch-media-inner">
-                        <img
-                          src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=1200&q=85"
-                          alt=""
+                        <video
+                          src="/get-in-touch.mp4"
                           className="get-in-touch-media-img"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
                         />
-                        <div className="get-in-touch-play" aria-hidden>
-                          <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
                       </div>
                       <div className="get-in-touch-overlay">
                         <p className="get-in-touch-text get-in-touch-text-first">
                           Have an idea, a question, or a moment you want to bring to life?
                         </p>
                         <p className="get-in-touch-text get-in-touch-text-second">
-                          Get in touch and start a conversation—sometimes that's all it takes for something meaningful to grow.
+                          Get in touch and start a conversation—sometimes that&apos;s all it takes for something meaningful to grow.
                         </p>
                         <a href="/contact" className="get-in-touch-btn">
                           START THE CONVERSATION →
