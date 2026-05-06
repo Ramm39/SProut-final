@@ -28,19 +28,22 @@
 
 /* Buttons – larger pills, left bottom placement, min touch target */
 .nav-btn {
+  --nav-btn-bg: #fff;
+  --nav-btn-border-color: transparent;
+  --nav-btn-hover-bg: #122b22;
+  --nav-progress-color: #122b22;
   width: clamp(120px, 26vw, 155px);
   height: clamp(54px, 11vw, 66px);
   min-width: 120px;
   min-height: 54px;
   border-radius: 999px;
-  background: transparent;
+  background: var(--nav-btn-bg);
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  border: none;
+  border: 1.5px solid var(--nav-btn-border-color);
   padding: 0;
-  transition: background 400ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 150ms ease-out;
+  transition: none;
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
@@ -56,8 +59,7 @@
   outline-offset: 2px;
 }
 
-/* SVG pill overlay – covers entire button */
-.nav-btn-pill-svg {
+.nav-btn-progress-svg {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -65,29 +67,11 @@
   pointer-events: none;
 }
 
-.nav-btn-pill-path {
-  transition: stroke 400ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.nav-btn-pill-path-prev {
-  stroke: #1a1a1a;
-}
-
-.nav-btn.prev.disabled .nav-btn-pill-path-prev {
-  stroke: rgba(0, 0, 0, 0.2);
-}
-
-.nav-btn-pill-path-next {
-  stroke: #1a1a1a;
-}
-
-.nav-btn.next.disabled .nav-btn-pill-path-next {
-  stroke: rgba(0, 0, 0, 0.2);
-}
-
-/* No transition on stroke-dashoffset so border fills smoothly 0→100% over timer */
-.nav-btn-pill-path-next {
-  transition: stroke 400ms cubic-bezier(0.22, 1, 0.36, 1);
+.nav-btn-progress-path {
+  stroke: var(--nav-progress-color);
+  stroke-linecap: round;
+  stroke-dasharray: calc(var(--nav-progress, 0) * 100) 100;
+  stroke-dashoffset: 0;
 }
 
 /* Inner content – flex center for arrow */
@@ -109,37 +93,19 @@
   max-width: 30px;
   max-height: 30px;
   object-fit: contain;
-  transition: filter 400ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
 }
 
 .arrow-icon.left {
   transform: scaleX(-1);
 }
 
-/* Active: hover – arrow turns white */
-.nav-btn.prev.active:hover,
-.nav-btn.next.active:hover {
-  background: #122b22;
+.nav-btn:hover {
+  background: var(--nav-btn-hover-bg);
 }
 
-.nav-btn.prev.active:hover .nav-btn-pill-path-prev,
-.nav-btn.next.active:hover .nav-btn-pill-path-next {
-  stroke: #122b22;
-}
-
-.nav-btn.prev.active:hover .arrow-icon,
-.nav-btn.next.active:hover .arrow-icon {
+.nav-btn:hover .arrow-icon {
   filter: brightness(0) invert(1);
-}
-
-.nav-btn.prev.active:hover .arrow-icon.left {
-  transform: scaleX(-1) translateX(-4px);
-}
-
-.nav-btn.next.active:hover .arrow-icon.right {
-  transform: translateX(4px);
 }
 
 /* Disabled */
@@ -156,11 +122,11 @@
 
 /* Press */
 .nav-btn.pressed {
-  transform: scale(0.96);
+  transform: none;
 }
 
 .nav-btn.pressed .arrow-icon {
-  transition-duration: 150ms;
+  transition: none;
 }
 
 /* Small screens – compact nav control */

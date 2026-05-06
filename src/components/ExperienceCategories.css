@@ -119,6 +119,11 @@
   font-weight: 700;
 }
 
+.experience-tab:focus,
+.experience-tab:focus-visible {
+  outline: none;
+}
+
 /* Left column – title, description, nav; start from same left as category tabs / nav buttons */
 .experience-left {
   display: flex;

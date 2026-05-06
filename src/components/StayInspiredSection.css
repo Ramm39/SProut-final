@@ -29,25 +29,30 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
-/* Ornamental motif – right side, full visibility */
+/* Half-mandala – full card height; right edge anchored, image scales vertically edge-to-edge */
 .stay-inspired-ornament {
   position: absolute;
   top: 0;
   right: 0;
-  width: 50%;
-  height: 100%;
-  min-height: 280px;
-  background-size: cover;
+  bottom: 0;
+  width: min(74%, 980px);
+  background-image: url('/stay-inspired-mandala.png');
+  background-size: auto 100%;
   background-position: right center;
   background-repeat: no-repeat;
-  opacity: 1;
+  opacity: 0.94;
   pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .stay-inspired-ornament {
-    width: 48%;
-    min-height: 340px;
+    width: min(70%, 920px);
+  }
+}
+
+@media (min-width: 1100px) {
+  .stay-inspired-ornament {
+    width: min(66%, 900px);
   }
 }
 
@@ -198,12 +203,13 @@
   }
 
   .stay-inspired-ornament {
-    width: 100%;
-    height: 180px;
-    min-height: 180px;
-    background-size: contain;
-    background-position: center top;
-    opacity: 1;
+    top: 0;
+    bottom: 0;
+    width: min(68%, 500px);
+    max-width: none;
+    background-size: auto 100%;
+    background-position: right center;
+    opacity: 0.92;
   }
 }
 
@@ -215,7 +221,6 @@
   }
 
   .stay-inspired-ornament {
-    height: 150px;
-    min-height: 150px;
+    width: min(74%, 420px);
   }
 }

@@ -4,6 +4,7 @@ import NavControl from './NavControl'
 import './ExperienceCategories.css'
 
 const CARD_INTERVAL_MS = 5000
+const BORDER_CYCLE_COMPLETE_HOLD_MS = 120
 
 export default function ExperienceCategories() {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0)
@@ -82,23 +83,28 @@ export default function ExperienceCategories() {
     if (isCarouselPaused) return
     intervalRef.current = setInterval(() => {
       const current = activeCardIndexRef.current
+      setProgress(1)
       if (current >= totalCards - 1) {
-        setIsTransitioning(true)
         setTimeout(() => {
-          setActiveCategoryIndex((ci) => (ci + 1) % totalCategories)
-          setActiveCardIndex(0)
+          setIsTransitioning(true)
+          setTimeout(() => {
+            setActiveCategoryIndex((ci) => (ci + 1) % totalCategories)
+            setActiveCardIndex(0)
+            setProgress(0)
+            progressStartRef.current = Date.now()
+            setIsTransitioning(false)
+            setIsEntering(true)
+            setTimeout(() => setIsEntering(false), 450)
+          }, 300)
+        }, BORDER_CYCLE_COMPLETE_HOLD_MS)
+      } else {
+        setTimeout(() => {
+          setActiveCardIndex(current + 1)
           setProgress(0)
           progressStartRef.current = Date.now()
-          setIsTransitioning(false)
-          setIsEntering(true)
-          setTimeout(() => setIsEntering(false), 450)
-        }, 300)
-      } else {
-        setActiveCardIndex(current + 1)
-        setProgress(0)
-        progressStartRef.current = Date.now()
+        }, BORDER_CYCLE_COMPLETE_HOLD_MS)
       }
-    }, CARD_INTERVAL_MS)
+    }, CARD_INTERVAL_MS + BORDER_CYCLE_COMPLETE_HOLD_MS)
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current)
     }

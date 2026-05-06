@@ -189,24 +189,16 @@
   }
 }
 
-/* NavControl – same as homepage; only progress/stroke color for visibility on dark bg */
+/* NavControl – same behavior, with section-specific colors */
 .experience-detail-nav-wrap .nav-progress {
   color: rgba(255, 255, 255, 0.95);
 }
 
-.experience-detail-nav-wrap .nav-btn-pill-path-prev,
-.experience-detail-nav-wrap .nav-btn-pill-path-next {
-  stroke: rgba(255, 255, 255, 0.9);
-}
-
-.experience-detail-nav-wrap .nav-btn.prev.disabled .nav-btn-pill-path-prev,
-.experience-detail-nav-wrap .nav-btn.next.disabled .nav-btn-pill-path-next {
-  stroke: rgba(255, 255, 255, 0.3);
-}
-
-.experience-detail-nav-wrap .nav-btn.prev.active:hover .nav-btn-pill-path-prev,
-.experience-detail-nav-wrap .nav-btn.next.active:hover .nav-btn-pill-path-next {
-  stroke: #122b22;
+.experience-detail-nav-wrap .nav-btn {
+  --nav-btn-bg: rgba(255, 255, 255, 0.08);
+  --nav-btn-border-color: rgba(255, 255, 255, 0.52);
+  --nav-btn-hover-bg: #556b2f;
+  --nav-progress-color: #9bd8c0;
 }
 
 .experience-detail-nav-wrap .arrow-icon {

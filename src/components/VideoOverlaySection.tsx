@@ -5,6 +5,8 @@ import './VideoOverlaySection.css'
 type VideoOverlaySectionProps = {
   /** Video source (default: first hero video) */
   videoSrc?: string
+  /** Render internal section video (disable when page provides shared video layer) */
+  showBackgroundVideo?: boolean
   /** Which side the white box sits on */
   side?: 'left' | 'right'
   /** Content to render inside the white box */
@@ -13,6 +15,7 @@ type VideoOverlaySectionProps = {
 
 export default function VideoOverlaySection({
   videoSrc = HERO_VIDEOS[0],
+  showBackgroundVideo = true,
   side = 'right',
   children,
 }: VideoOverlaySectionProps) {
@@ -34,29 +37,31 @@ export default function VideoOverlaySection({
 
   return (
     <section className={sectionClass}>
-      <div className="video-overlay-video-wrap">
-        <video
-          ref={videoRef}
-          className="video-overlay-video"
-          src={videoSrc}
-          autoPlay
-          muted
-          loop
-          playsInline
-          aria-hidden
-        />
-        <div className="video-overlay-gradient" aria-hidden />
-        <button
-          type="button"
-          className="video-overlay-play-btn"
-          onClick={() => setIsPlaying((p) => !p)}
-          aria-label={isPlaying ? 'Pause' : 'Play'}
-        >
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </button>
-      </div>
+      {showBackgroundVideo && (
+        <div className="video-overlay-video-wrap">
+          <video
+            ref={videoRef}
+            className="video-overlay-video"
+            src={videoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden
+          />
+          <div className="video-overlay-gradient" aria-hidden />
+          <button
+            type="button"
+            className="video-overlay-play-btn"
+            onClick={() => setIsPlaying((p) => !p)}
+            aria-label={isPlaying ? 'Pause' : 'Play'}
+          >
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </button>
+        </div>
+      )}
       <div className={cardClass}>
         {children}
       </div>

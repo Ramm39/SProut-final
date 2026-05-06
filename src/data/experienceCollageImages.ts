@@ -1,14 +1,112 @@
-export const EXPERIENCE_COLLAGE_IMAGES = [
-  { id: 'c1', src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=85', alt: '', size: 'tall' as const },
-  { id: 'c2', src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=85', alt: '', size: 'wide' as const },
-  { id: 'c3', src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=85', alt: '', size: 'tall' as const },
-  { id: 'c4', src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=85', alt: '', size: 'square' as const },
-  { id: 'c5', src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=85', alt: '', size: 'wide' as const },
-  { id: 'c6', src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=85', alt: '', size: 'wide' as const },
-  { id: 'c7', src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=85', alt: '', size: 'tall' as const },
-  { id: 'c8', src: 'https://images.unsplash.com/photo-1523050628034-8a2f66bb8b8f?w=600&q=85', alt: '', size: 'square' as const },
-  { id: 'c9', src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=85', alt: '', size: 'wide' as const },
-  { id: 'c10', src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=85', alt: '', size: 'short' as const },
-  { id: 'c11', src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=85', alt: '', size: 'tall' as const },
-  { id: 'c12', src: 'https://images.unsplash.com/photo-1509062522246-37579ef77d0d?w=600&q=85', alt: '', size: 'square' as const },
+/** Masonry gallery columns — layout mirrors `photogallary.html`; assets live in `/public/gallery`. */
+export type MasonryCell = {
+  aspectRatio: string
+  alt: string
+  src: string
+}
+
+export type MasonryColumn = {
+  id: string
+  translateYPct: number
+  cells: MasonryCell[]
+}
+
+/** Six local images copied from repo `gallary/` → `public/gallery/gallery-{6–11}.png`. */
+export const EXPERIENCE_GALLERY_PUBLIC_IMAGES = [
+  '/gallery/gallery-6.png',
+  '/gallery/gallery-7.png',
+  '/gallery/gallery-8.png',
+  '/gallery/gallery-9.png',
+  '/gallery/gallery-10.png',
+  '/gallery/gallery-11.png',
+] as const
+
+const g = EXPERIENCE_GALLERY_PUBLIC_IMAGES
+
+export const EXPERIENCE_MASONRY_GALLERY: MasonryColumn[] = [
+  {
+    id: 'col-1',
+    translateYPct: 0,
+    cells: [
+      {
+        aspectRatio: '3 / 4.5',
+        alt: 'Campus experience',
+        src: g[0],
+      },
+      {
+        aspectRatio: '3 / 5.5',
+        alt: 'Campus experience',
+        src: g[1],
+      },
+    ],
+  },
+  {
+    id: 'col-2',
+    translateYPct: 15,
+    cells: [
+      {
+        aspectRatio: '1 / 1',
+        alt: 'Campus experience',
+        src: g[2],
+      },
+      {
+        aspectRatio: '3 / 5',
+        alt: 'Campus experience',
+        src: g[3],
+      },
+    ],
+  },
+  {
+    id: 'col-3',
+    translateYPct: 35,
+    cells: [
+      {
+        aspectRatio: '1.4 / 1',
+        alt: 'Campus experience',
+        src: g[4],
+      },
+      {
+        aspectRatio: '1 / 1',
+        alt: 'Campus experience',
+        src: g[5],
+      },
+      {
+        aspectRatio: '3 / 4',
+        alt: 'Campus experience',
+        src: g[0],
+      },
+    ],
+  },
+  {
+    id: 'col-4',
+    translateYPct: 32,
+    cells: [
+      {
+        aspectRatio: '1.4 / 1',
+        alt: 'Campus experience',
+        src: g[1],
+      },
+      {
+        aspectRatio: '1 / 1',
+        alt: 'Campus experience',
+        src: g[2],
+      },
+    ],
+  },
+  {
+    id: 'col-5',
+    translateYPct: 3.5,
+    cells: [
+      {
+        aspectRatio: '3 / 6',
+        alt: 'Campus experience',
+        src: g[3],
+      },
+      {
+        aspectRatio: '1 / 1',
+        alt: 'Campus experience',
+        src: g[4],
+      },
+    ],
+  },
 ]

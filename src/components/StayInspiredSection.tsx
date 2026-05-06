@@ -8,15 +8,8 @@ export default function StayInspiredSection() {
   return (
     <section className="stay-inspired-section" aria-labelledby="stay-inspired-heading">
       <div className="stay-inspired-container">
-        {/* Ornamental background – right-aligned, subtle; uses card image.webp */}
-        <div
-          className="stay-inspired-ornament"
-          role="presentation"
-          aria-hidden
-          style={{
-            backgroundImage: `url('/card%20image.webp')`,
-          }}
-        />
+        {/* Half-mandala ornament – anchored to the right edge (`public/stay-inspired-mandala.png`) */}
+        <div className="stay-inspired-ornament" role="presentation" aria-hidden />
 
         <div className="stay-inspired-content">
           <h2 id="stay-inspired-heading" className="stay-inspired-title">

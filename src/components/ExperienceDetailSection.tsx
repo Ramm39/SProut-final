@@ -8,6 +8,8 @@ import NavControl from './NavControl'
 import './ExperienceDetailSection.css'
 
 const TRANSITION_DURATION_MS = 600
+const DETAIL_CARD_INTERVAL_MS = 5000
+const BORDER_CYCLE_COMPLETE_HOLD_MS = 120
 
 export default function ExperienceDetailSection() {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
@@ -15,7 +17,12 @@ export default function ExperienceDetailSection() {
   const [displayIndex, setDisplayIndex] = useState(0)
   const [exitingIndex, setExitingIndex] = useState<number | null>(null)
   const [isEntering, setIsEntering] = useState(false)
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
   const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const progressRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(null)
+  const progressStartRef = useRef(0)
 
   const contentIndex = activeTabIndex * SLIDES_PER_TAB + activePointIndex
   const totalSlides = EXPERIENCE_DETAIL_SLIDES.length
@@ -32,6 +39,8 @@ export default function ExperienceDetailSection() {
 
     setExitingIndex(contentIndex)
     setIsEntering(true)
+    setProgress(0)
+    progressStartRef.current = Date.now()
 
     // Start enter animation on next frame
     requestAnimationFrame(() => {
@@ -72,8 +81,43 @@ export default function ExperienceDetailSection() {
   }
 
   useEffect(() => {
+    progressStartRef.current = Date.now()
+  }, [])
+
+  useEffect(() => {
+    if (isCarouselPaused) return
+    intervalRef.current = setInterval(() => {
+      setProgress(1)
+      setTimeout(() => {
+        goToNext()
+      }, BORDER_CYCLE_COMPLETE_HOLD_MS)
+    }, DETAIL_CARD_INTERVAL_MS + BORDER_CYCLE_COMPLETE_HOLD_MS)
+
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current)
+    }
+  }, [goToNext, isCarouselPaused])
+
+  useEffect(() => {
+    if (isCarouselPaused) return
+    const start = progressStartRef.current
+    const tick = () => {
+      const elapsed = Date.now() - start
+      const p = Math.min(elapsed / DETAIL_CARD_INTERVAL_MS, 1)
+      setProgress(p)
+      if (p < 1) progressRef.current = requestAnimationFrame(tick)
+    }
+    progressRef.current = requestAnimationFrame(tick)
+    return () => {
+      if (progressRef.current) cancelAnimationFrame(progressRef.current)
+    }
+  }, [displayIndex, isCarouselPaused])
+
+  useEffect(() => {
     return () => {
       if (transitionTimeoutRef.current) clearTimeout(transitionTimeoutRef.current)
+      if (intervalRef.current) clearInterval(intervalRef.current)
+      if (progressRef.current) cancelAnimationFrame(progressRef.current)
     }
   }, [])
 
@@ -163,12 +207,17 @@ export default function ExperienceDetailSection() {
                 </a>
               </div>
             </div>
-            <div className="experience-detail-nav-wrap">
+            <div
+              className="experience-detail-nav-wrap"
+              onMouseEnter={() => setIsCarouselPaused(true)}
+              onMouseLeave={() => setIsCarouselPaused(false)}
+            >
               <NavControl
                 currentIndex={activePointIndex}
                 total={SLIDES_PER_TAB}
                 onPrev={goToPrev}
                 onNext={goToNext}
+                timerProgress={progress}
               />
             </div>
           </div>
