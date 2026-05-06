@@ -1,5 +1,5 @@
 import Navbar from '../components/navbar'
-import HeroSection from '../components/HeroSection'
+import HeroSection, { EXPERIENCE_HERO_VIDEO } from '../components/HeroSection'
 import ExperienceDetailSection from '../components/ExperienceDetailSection'
 import ExperienceCollageSection from '../components/ExperienceCollageSection'
 import StayInspiredSection from '../components/StayInspiredSection'
@@ -19,7 +19,7 @@ export default function ExperiencePage() {
               titleLine2="NOW...."
               ctaText="Learn More"
               ctaHref="/#experience"
-              videoSrc="/experiance-hero.mp4"
+              videoSrc={EXPERIENCE_HERO_VIDEO}
             />
           </div>
         </main>
