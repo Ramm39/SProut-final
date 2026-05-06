@@ -1,0 +1,60 @@
+.how-it-works-page {
+  position: relative;
+  isolation: isolate;
+  background: #000;
+}
+
+/* Fixed behind content but above page paint (avoid z-index:-N behind parent bg → blank video) */
+.how-it-works-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.how-it-works-background-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.how-it-works-background-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Full-page scroll sits above ambient video */
+.how-it-works-page > .fullpage-viewport {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.how-it-works-page > footer,
+.how-it-works-page .site-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.how-it-works-page .video-overlay-section {
+  background: transparent;
+}
+
+.how-it-works-page .stay-inspired-section {
+  background: transparent;
+}
+
+.how-it-works-page .hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 52%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
