@@ -23,30 +23,48 @@ dist-ssr
 *.sln
 *.sw?
 
-# Videos (too large for repo)
-*.mp4
-*.mov
-*.avi
-*.mkv
-*.webm
-*.wmv
-*.m4v
-video/
-public/video/
+# Local / scratch video folder at repo root only (do not match `public/video/`)
+/video/
 
-# Heavy media / images
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.webp
-*.ico
-*.bmp
-*.pdf
-*.zip
-*.rar
-*.7z
+# Heavy media everywhere except `public/` (static assets must ship to Netlify)
+**/*.mp4
+!public/**/*.mp4
+**/*.mov
+!public/**/*.mov
+**/*.avi
+!public/**/*.avi
+**/*.mkv
+!public/**/*.mkv
+**/*.webm
+!public/**/*.webm
+**/*.wmv
+!public/**/*.wmv
+**/*.m4v
+!public/**/*.m4v
 
-# Allow site assets in public
-!public/logoblank.png
-!public/right-arrow.png
+**/*.png
+!public/**/*.png
+**/*.jpg
+!public/**/*.jpg
+**/*.jpeg
+!public/**/*.jpeg
+**/*.gif
+!public/**/*.gif
+**/*.webp
+!public/**/*.webp
+**/*.ico
+!public/**/*.ico
+**/*.bmp
+!public/**/*.bmp
+**/*.pdf
+!public/**/*.pdf
+**/*.zip
+!public/**/*.zip
+**/*.rar
+!public/**/*.rar
+**/*.7z
+!public/**/*.7z
+
+# Unused or >100MB — keep locally only; do not commit (GitHub blocks files over 100MB)
+public/video/how-it-works-3min.mp4
+public/video/15162500_3840_2160_30fps.mp4

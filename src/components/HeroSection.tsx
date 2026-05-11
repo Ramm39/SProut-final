@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from 'react'
 
+/** Hero / overlay clips. Avoid >100MB sources so assets can live in `public/video` and ship with the site. */
 export const HERO_VIDEOS = [
   '/video/12423791_3840_2160_25fps.mp4',
-  '/video/15162500_3840_2160_30fps.mp4',
+  '/video/howitwork.mp4',
   '/video/6582341-uhd_3840_2160_30fps.mp4',
 ] as const
 
