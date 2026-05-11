@@ -57,8 +57,19 @@
 }
 
 .contact-hero-title-accent {
-  color: #e5b56d;
-  -webkit-text-fill-color: #e5b56d;
+  display: inline-block;
+  /* Top: pale gold → bottom: warm peach (matches reference) */
+  background: linear-gradient(
+    180deg,
+    #f3e6bc 0%,
+    #e8c878 42%,
+    #e8a060 78%,
+    #e2946a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-hero-subtitle {
@@ -166,15 +177,15 @@
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
-  min-height: min(74vh, 660px);
+  min-height: min(78vh, 780px);
 }
 
 .contact-mandala-wrap {
   position: absolute;
-  top: 0;
+  top: -2%;
   bottom: 0;
-  right: calc(min(100%, var(--contact-form-max-width)) - 185px);
-  width: 700px;
+  right: calc(min(100%, var(--contact-form-max-width)) - 240px);
+  width: min(96vw, 980px);
   display: flex;
   align-items: stretch;
   justify-content: flex-end;
@@ -184,13 +195,14 @@
 }
 
 .contact-mandala-img {
-  height: 108%;
+  height: 128%;
   max-height: none;
   width: auto;
   max-width: none;
   object-fit: contain;
   object-position: right center;
   margin-right: 0;
+  transform: translateY(calc(-1 * min(11vh, 5.75rem)));
   mix-blend-mode: normal;
   opacity: 1;
   filter: sepia(1) hue-rotate(347deg) saturate(4.4) brightness(1.12)
@@ -282,9 +294,10 @@
   }
 
   .contact-mandala-img {
-    max-height: 420px;
+    max-height: 540px;
     opacity: 0.7;
     margin-left: -1rem;
+    transform: translateY(calc(-1 * min(7vh, 3.5rem)));
   }
 
   .contact-form-card {

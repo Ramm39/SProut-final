@@ -3,15 +3,21 @@ import { useRef, useState, useEffect } from 'react'
 /** Hero / overlay clips. Avoid >100MB sources so assets can live in `public/video` and ship with the site. */
 export const HERO_VIDEOS = [
   '/video/12423791_3840_2160_25fps.mp4',
-  '/video/howitwork.mp4',
+  '/video/how-it-work.mp4',
   '/video/6582341-uhd_3840_2160_30fps.mp4',
 ] as const
 
 /** Experience page hero – lives under `public/video/` */
 export const EXPERIENCE_HERO_VIDEO = '/video/experiance-hero.mp4' as const
 
-/** How it works page – full-bleed background behind hero */
-export const HOW_IT_WORKS_HERO_VIDEO = '/video/howitwork.mp4' as const
+/** How it works page – hero foreground video (`public/video/how-it-work.mp4`) */
+export const HOW_IT_WORKS_HERO_VIDEO = '/video/how-it-work.mp4' as const
+
+/** Home page hero – `public/video/home-page.mp4` */
+export const HOME_PAGE_HERO_VIDEO = '/video/home-page.mp4' as const
+
+/** Home page Mission section – `public/video/mission-home.mp4` */
+export const MISSION_HOME_PAGE_VIDEO = '/video/mission-home.mp4' as const
 
 type HeroSectionProps = {
   /** Section id for anchor (e.g. "home" on homepage) */

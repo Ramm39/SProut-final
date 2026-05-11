@@ -469,46 +469,14 @@ main {
   }
 }
 
-.mission-image-wrap {
+.mission-visual-video {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  z-index: 0;
-  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: scale(1.04);
-  pointer-events: none;
-}
-
-.mission-image-wrap.mission-image-active {
-  opacity: 1;
-  transform: scale(1);
-  pointer-events: auto;
-  z-index: 1;
-}
-
-.mission-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.mission-play-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.mission-play-overlay svg {
-  width: clamp(48px, 8vw, 64px);
-  height: clamp(48px, 8vw, 64px);
-  color: #fff;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  z-index: 1;
 }
 
 /* Right 50%: text vertically centered, substantial left padding, less right */
@@ -721,15 +689,6 @@ main {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mission-image-wrap {
-    transition: opacity 0.25s ease;
-    transform: none;
-  }
-
-  .mission-image-wrap.mission-image-active {
-    transform: none;
-  }
-
   .mission-item {
     transition: background 0.2s ease, box-shadow 0.2s ease;
   }

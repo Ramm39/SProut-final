@@ -8,9 +8,7 @@ export default function StayInspiredSection() {
   return (
     <section className="stay-inspired-section" aria-labelledby="stay-inspired-heading">
       <div className="stay-inspired-container">
-        {/* Half-mandala ornament – anchored to the right edge (`public/stay-inspired-mandala.png`) */}
-        <div className="stay-inspired-ornament" role="presentation" aria-hidden />
-
+        {/* Layers (bottom → top): 1) card surface 2) copy 3) mandala asset */}
         <div className="stay-inspired-content">
           <h2 id="stay-inspired-heading" className="stay-inspired-title">
             STAY INSPIRED
@@ -47,6 +45,14 @@ export default function StayInspiredSection() {
             We only share what&apos;s worth your time. No noise. No pressure.
           </p>
         </div>
+
+        <img
+          className="stay-inspired-ornament"
+          src="/stay-inspired-mandala.png"
+          alt=""
+          decoding="async"
+          draggable={false}
+        />
       </div>
     </section>
   )

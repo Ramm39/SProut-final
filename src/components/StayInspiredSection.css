@@ -13,6 +13,7 @@
 
 .stay-inspired-container {
   position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 100%;
   min-height: min(74vh, 720px);
@@ -22,41 +23,37 @@
   border-radius: 56px;
   overflow: hidden;
   /* Premium lifted feel: soft inner glow + shadow */
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.04),
-    0 32px 64px rgba(0, 0, 0, 0.35),
-    0 16px 32px rgba(0, 0, 0, 0.25),
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 32px 64px rgba(0, 0, 0, 0.35), 0 16px 32px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 
-/* Half-mandala – full card height; right edge anchored, image scales vertically edge-to-edge */
+/* Mandala – top layer over copy; PNG transparency keeps text readable; cropped at card edges */
 .stay-inspired-ornament {
   position: absolute;
-  top: 0;
+  top: 50%;
   right: 0;
-  bottom: 0;
-  width: min(74%, 980px);
-  background-image: url('/stay-inspired-mandala.png');
-  background-size: auto 100%;
-  background-position: right center;
-  background-repeat: no-repeat;
+  z-index: 2;
+  height: 150%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center center;
+  /* translate X: higher = further right (flush mandala to card’s right edge, no green gap) */
+  transform: translate(26%, calc(-50% + 14px));
   opacity: 0.94;
   pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .stay-inspired-ornament {
-    width: min(70%, 920px);
-  }
+  user-select: none;
 }
 
 @media (min-width: 1100px) {
   .stay-inspired-ornament {
-    width: min(66%, 900px);
+    height: 158%;
+    transform: translate(28%, calc(-50% + 14px));
   }
 }
 
-/* Content – left-aligned, generous spacing; fills card height */
+/* Content – middle layer (above card, below mandala) */
 .stay-inspired-content {
   position: relative;
   z-index: 1;
@@ -79,7 +76,7 @@
 
 /* Title – bold, uppercase, editorial; larger to fit section */
 .stay-inspired-title {
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-size: clamp(2rem, 4.6vw, 3.1rem);
   font-weight: 700;
   letter-spacing: 0.12em;
   color: #f4f1e6;
@@ -89,7 +86,7 @@
 
 /* Subtitle – calm, elegant; larger to fit section */
 .stay-inspired-subtitle {
-  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-size: clamp(1.1rem, 2.25vw, 1.35rem);
   font-weight: 400;
   line-height: 1.6;
   color: rgba(244, 241, 230, 0.82);
@@ -120,7 +117,7 @@
 }
 
 .stay-inspired-field-wrap::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   right: 0;
@@ -139,7 +136,7 @@
   width: 100%;
   padding: 0.6rem 0 0.5rem;
   font-family: inherit;
-  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  font-size: clamp(1.1rem, 2vw, 1.3rem);
   letter-spacing: 0.14em;
   color: #f4f1e6;
   background: transparent;
@@ -159,7 +156,7 @@
   align-self: flex-start;
   padding: 0.9rem 2rem;
   font-family: inherit;
-  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  font-size: clamp(1rem, 1.85vw, 1.15rem);
   font-weight: 600;
   letter-spacing: 0.1em;
   color: #0f1f1a;
@@ -182,7 +179,7 @@
 
 /* Footer disclaimer – muted, minimal; larger to fit section */
 .stay-inspired-disclaimer {
-  font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+  font-size: clamp(0.95rem, 1.55vw, 1.05rem);
   line-height: 1.5;
   color: rgba(244, 241, 230, 0.5);
   margin: 0;
@@ -203,12 +200,8 @@
   }
 
   .stay-inspired-ornament {
-    top: 0;
-    bottom: 0;
-    width: min(68%, 500px);
-    max-width: none;
-    background-size: auto 100%;
-    background-position: right center;
+    height: 132%;
+    transform: translate(20%, calc(-50% + 12px));
     opacity: 0.92;
   }
 }
@@ -221,6 +214,7 @@
   }
 
   .stay-inspired-ornament {
-    width: min(74%, 420px);
+    height: 124%;
+    transform: translate(16%, calc(-50% + 10px));
   }
 }

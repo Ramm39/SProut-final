@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/navbar'
-import HeroSection from './components/HeroSection'
+import HeroSection, { HOME_PAGE_HERO_VIDEO, MISSION_HOME_PAGE_VIDEO } from './components/HeroSection'
 import ExperienceCategories from './components/ExperienceCategories'
 import ExperiencePage from './pages/ExperiencePage'
 import HowItWorksPage from './pages/HowItWorksPage'
@@ -16,7 +16,6 @@ const MISSION_ITEMS: Array<{
   id: string
   title: string
   description: string
-  image: string
   icon: 'person-gear' | 'book' | 'lightning' | 'heart'
   audio?: string
 }> = [
@@ -24,7 +23,6 @@ const MISSION_ITEMS: Array<{
       id: 'human-centered',
       title: 'Human-Centered Design',
       description: 'We begin with people. Every experience is built to feel intuitive, inclusive, and easy to step into.',
-      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=85',
       icon: 'person-gear',
       audio: '', // add e.g. /audio/mission-1.mp3 for this mission's song
     },
@@ -32,7 +30,6 @@ const MISSION_ITEMS: Array<{
       id: 'story-led',
       title: 'Story-Led Creativity',
       description: 'Every event tells a story that resonates and inspires. Your people, your vibe, your story – brought to life.',
-      image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200&q=85',
       icon: 'book',
       audio: '',
     },
@@ -40,7 +37,6 @@ const MISSION_ITEMS: Array<{
       id: 'white-glove',
       title: 'White-Glove Execution',
       description: 'Every detail handled with intention, care, and heart. We run everything. You enjoy the moment.',
-      image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&q=85',
       icon: 'lightning',
       audio: '',
     },
@@ -48,7 +44,6 @@ const MISSION_ITEMS: Array<{
       id: 'commitment',
       title: 'Our Commitment',
       description: 'We create moments people feel, not just attend. Your audience experience guides every decision we make.',
-      image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=85',
       icon: 'heart',
       audio: '',
     },
@@ -104,7 +99,7 @@ function App() {
             <>
               <Navbar />
               <FullPageScroll>
-                <HeroSection id="home" ctaHref="#experience" />
+                <HeroSection id="home" ctaHref="#experience" videoSrc={HOME_PAGE_HERO_VIDEO} />
                 <ExperienceCategories />
 
                 {/* Feedback (testimonial) + Our Process combined into one full-page section */}
@@ -172,31 +167,22 @@ function App() {
                   </section>
                 </section>
 
-                {/* Mission – full-viewport big screen, photo + text + per-mission audio */}
+                {/* Mission – full-viewport: left video + text + optional per-mission audio */}
                 <section id="mission" className="mission-section fullpage-section">
                   <audio ref={missionAudioRef} loop playsInline aria-hidden />
                   <div className="mission-container">
                     <div className="mission-visual">
                       <div className="mission-visual-inner">
-                        {MISSION_ITEMS.map((item, index) => (
-                          <div
-                            key={item.id}
-                            className={`mission-image-wrap ${index === activeMission ? 'mission-image-active' : ''}`}
-                            aria-hidden={index !== activeMission}
-                          >
-                            <img
-                              src={item.image}
-                              alt=""
-                              className="mission-image"
-                              loading={index === 0 ? 'eager' : 'lazy'}
-                            />
-                          </div>
-                        ))}
-                        <div className="mission-play-overlay" aria-hidden>
-                          <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                            <path d="M8 5v14l11-7z" />
-                          </svg>
-                        </div>
+                        <video
+                          className="mission-visual-video"
+                          src={MISSION_HOME_PAGE_VIDEO}
+                          autoPlay
+                          loop
+                          muted={missionMuted}
+                          playsInline
+                          preload="metadata"
+                          aria-label="Mission section video"
+                        />
                       </div>
                     </div>
                     <div className="mission-content">
@@ -206,7 +192,7 @@ function App() {
                           type="button"
                           className="mission-mute-btn"
                           onClick={toggleMissionMute}
-                          aria-label={missionMuted ? 'Unmute mission audio' : 'Mute mission audio'}
+                          aria-label={missionMuted ? 'Unmute mission video' : 'Mute mission video'}
                         >
                           {missionMuted ? (
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" /></svg>

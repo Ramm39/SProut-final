@@ -1,39 +1,20 @@
 .how-it-works-page {
   position: relative;
   isolation: isolate;
-  background: #000;
+  background: #050a08;
 }
 
-/* Fixed behind content but above page paint (avoid z-index:-N behind parent bg → blank video) */
-.how-it-works-background {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.how-it-works-background-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.how-it-works-background-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-/* Full-page scroll sits above ambient video */
 .how-it-works-page > .fullpage-viewport {
   position: relative;
   z-index: 1;
   background-color: transparent;
+}
+
+/* Slides after the hero: clean white behind overlay cards */
+.how-it-works-page .fullpage-slide:nth-child(n + 2) {
+  background-color: #ffffff;
+  background-image: none;
+  background-attachment: scroll;
 }
 
 .how-it-works-page > footer,
@@ -47,14 +28,14 @@
 }
 
 .how-it-works-page .stay-inspired-section {
-  background: #fff;
+  background: transparent;
 }
 
 .how-it-works-page .hero-overlay {
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.25) 52%,
-    rgba(0, 0, 0, 0.45) 100%
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.2) 48%,
+    rgba(0, 0, 0, 0.5) 100%
   );
 }
