@@ -10,8 +10,29 @@
   background-color: transparent;
 }
 
-/* Slides after the hero: clean white behind overlay cards */
-.how-it-works-page .fullpage-slide:nth-child(n + 2) {
+/* Shubham portrait slide */
+.how-it-works-page .fullpage-slide:nth-child(2) {
+  background-color: #0b1e15;
+  background-image: none;
+  background-attachment: scroll;
+}
+
+/* Prince portrait slide (warm beige matches section root) */
+.how-it-works-page .fullpage-slide:nth-child(3) {
+  background-color: #dbd3c6;
+  background-image: none;
+  background-attachment: scroll;
+}
+
+/* Our Story slide */
+.how-it-works-page .fullpage-slide:nth-child(4) {
+  background-color: #e0d5c1;
+  background-image: none;
+  background-attachment: scroll;
+}
+
+/* Stay Inspired and any following slides */
+.how-it-works-page .fullpage-slide:nth-child(n + 5) {
   background-color: #ffffff;
   background-image: none;
   background-attachment: scroll;
@@ -21,10 +42,6 @@
 .how-it-works-page .site-footer {
   position: relative;
   z-index: 2;
-}
-
-.how-it-works-page .video-overlay-section {
-  background: transparent;
 }
 
 .how-it-works-page .stay-inspired-section {

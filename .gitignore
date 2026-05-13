@@ -64,7 +64,3 @@ dist-ssr
 !public/**/*.rar
 **/*.7z
 !public/**/*.7z
-
-# Unused or >100MB — keep locally only; do not commit (GitHub blocks files over 100MB)
-public/video/how-it-works-3min.mp4
-public/video/15162500_3840_2160_30fps.mp4

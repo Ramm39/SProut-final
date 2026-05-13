@@ -31,7 +31,7 @@ export default function FullPageScroll({ children, initialIndex = 0 }: FullPageS
   const lockUntilRef = useRef(0)
   const touchStartYRef = useRef(0)
   const viewportRef = useRef<HTMLDivElement>(null)
-  const navigateRef = useRef({ goNext: () => {}, goPrev: () => {} })
+  const navigateRef = useRef({ goNext: () => { }, goPrev: () => { } })
   const indexRef = useRef(currentIndex)
   const prevIndexRef = useRef(currentIndex)
 

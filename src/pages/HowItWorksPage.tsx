@@ -1,6 +1,8 @@
 import Navbar from '../components/navbar'
 import HeroSection, { HOW_IT_WORKS_HERO_VIDEO } from '../components/HeroSection'
-import VideoOverlaySection from '../components/VideoOverlaySection'
+import ShubhamHowItWorksSection from '../components/ShubhamHowItWorksSection'
+import PrinceHowItWorksSection from '../components/PrinceHowItWorksSection'
+import OurStoryHowItWorksSection from '../components/OurStoryHowItWorksSection'
 import StayInspiredSection from '../components/StayInspiredSection'
 import SiteFooter from '../components/SiteFooter'
 import FullPageScroll from '../components/FullPageScroll'
@@ -22,12 +24,9 @@ export default function HowItWorksPage() {
             showBackgroundVideo
           />
         </main>
-        <VideoOverlaySection side="right" showBackgroundVideo={false}>
-          {/* Content for right-side card */}
-        </VideoOverlaySection>
-        <VideoOverlaySection side="left" showBackgroundVideo={false}>
-          {/* Content for left-side card */}
-        </VideoOverlaySection>
+        <ShubhamHowItWorksSection />
+        <PrinceHowItWorksSection />
+        <OurStoryHowItWorksSection />
         <StayInspiredSection />
       </FullPageScroll>
       <SiteFooter />
