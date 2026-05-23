@@ -1,5 +1,5 @@
 import Navbar from '../components/navbar'
-import SiteFooter from '../components/SiteFooter'
+import SiteFooterGate from '../components/SiteFooterGate'
 import FullPageScroll from '../components/FullPageScroll'
 import { ContactHeroSlide, ContactFormSlide } from '../components/GetInTouchSections'
 
@@ -13,7 +13,7 @@ export default function ContactPage() {
           <ContactFormSlide />
         </FullPageScroll>
       </main>
-      <SiteFooter />
+      <SiteFooterGate />
     </>
   )
 }

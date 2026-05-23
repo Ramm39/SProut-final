@@ -1,0 +1,42 @@
+/* Experience page layout — hero + services in full-page scroll; gallery flows naturally below */
+
+.experience-page > .fullpage-viewport {
+  position: relative;
+  z-index: 1;
+}
+
+/* Brighter hero video with minimal dimming (match homepage treatment) */
+.experience-page-hero-wrap .hero-video {
+  filter: brightness(1.08) contrast(1.05) saturate(1.06);
+}
+
+.experience-page-hero-wrap .hero-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.14) 45%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+}
+
+/* Services section fills the second full-page slide */
+.experience-page .fullpage-slide:nth-child(2) {
+  background: #0f221c;
+}
+
+/* Photo gallery + Stay Inspired are full-page slides (slides 3 & 4) */
+.experience-page .fullpage-slide:nth-child(3) {
+  background: #faf8f2;
+}
+
+.experience-page .fullpage-slide:nth-child(4) {
+  background: #ffffff;
+}
+
+.experience-page .fullpage-slide:nth-child(3) .experience-collage {
+  padding-top: clamp(3.5rem, 7vh, 5.5rem);
+  padding-bottom: clamp(3.5rem, 7vh, 5.5rem);
+  min-height: 100%;
+  min-height: 100dvh;
+  box-sizing: border-box;
+}

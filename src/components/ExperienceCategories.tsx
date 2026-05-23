@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { CATEGORIES } from '../data/categories'
+import { isExperienceVideo } from '../data/experienceMedia'
 import NavControl from './NavControl'
 import './ExperienceCategories.css'
 
@@ -224,12 +225,25 @@ export default function ExperienceCategories() {
               {category.cards.map((card) => (
                 <article key={card.id} className="experience-card">
                   <div className="experience-card-image-wrap">
-                    <img
-                      src={card.image}
-                      alt=""
-                      className="experience-card-image"
-                      loading="lazy"
-                    />
+                    {isExperienceVideo(card.image) ? (
+                      <video
+                        src={card.image}
+                        className="experience-card-image"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        aria-hidden
+                      />
+                    ) : (
+                      <img
+                        src={card.image}
+                        alt=""
+                        className="experience-card-image"
+                        loading="lazy"
+                      />
+                    )}
                   </div>
                   <div className="experience-card-content">
                     <div className="experience-card-text">

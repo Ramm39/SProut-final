@@ -4,12 +4,48 @@ import {
   EXPERIENCE_DETAIL_SLIDES,
   SLIDES_PER_TAB,
 } from '../data/experienceDetailSlides'
+import {
+  experiencePoster,
+  isExperienceVideo,
+} from '../data/experienceMedia'
 import NavControl from './NavControl'
 import './ExperienceDetailSection.css'
 
 const TRANSITION_DURATION_MS = 600
 const DETAIL_CARD_INTERVAL_MS = 5000
 const BORDER_CYCLE_COMPLETE_HOLD_MS = 120
+
+function SlideCopy({
+  title,
+  paragraph1,
+  paragraph2,
+  ctaOverlayText,
+  ctaButtonText,
+  className = '',
+}: {
+  title: string
+  paragraph1: string
+  paragraph2: string
+  ctaOverlayText: string
+  ctaButtonText: string
+  className?: string
+}) {
+  return (
+    <div className={`experience-detail-copy ${className}`.trim()}>
+      <div className="experience-detail-text">
+        <h2 className="experience-detail-title">{title}</h2>
+        <p className="experience-detail-p1">{paragraph1}</p>
+        <p className="experience-detail-p2">{paragraph2}</p>
+      </div>
+      <div className="experience-detail-cta-box">
+        <p className="experience-detail-cta-text">{ctaOverlayText}</p>
+        <a href="/contact" className="experience-detail-cta-btn">
+          {ctaButtonText}
+        </a>
+      </div>
+    </div>
+  )
+}
 
 export default function ExperienceDetailSection() {
   const [activeTabIndex, setActiveTabIndex] = useState(0)
@@ -31,7 +67,6 @@ export default function ExperienceDetailSection() {
     if (nextIndex < 0 || nextIndex >= totalSlides) return
     if (nextIndex === contentIndex) return
 
-    // Clear any pending transition cleanup
     if (transitionTimeoutRef.current) {
       clearTimeout(transitionTimeoutRef.current)
       transitionTimeoutRef.current = null
@@ -42,7 +77,6 @@ export default function ExperienceDetailSection() {
     setProgress(0)
     progressStartRef.current = Date.now()
 
-    // Start enter animation on next frame
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         setDisplayIndex(nextIndex)
@@ -76,8 +110,7 @@ export default function ExperienceDetailSection() {
 
   const handleTabClick = (tabI: number) => {
     if (tabI === activeTabIndex) return
-    const nextIndex = tabI * SLIDES_PER_TAB + 0
-    goToIndex(nextIndex)
+    goToIndex(tabI * SLIDES_PER_TAB)
   }
 
   useEffect(() => {
@@ -125,7 +158,11 @@ export default function ExperienceDetailSection() {
   const exitingSlide = exitingIndex !== null ? EXPERIENCE_DETAIL_SLIDES[exitingIndex] : null
 
   return (
-    <section className="experience-detail experience-detail-fullscreen" aria-label="Experience detail">
+    <section
+      id="experience-services"
+      className="experience-detail experience-detail-fullscreen"
+      aria-label="Experience detail"
+    >
       <div className="experience-detail-floating-nav">
         <div className="experience-detail-tabs">
           {EXPERIENCE_DETAIL_TABS.map((tab, i) => (
@@ -144,67 +181,59 @@ export default function ExperienceDetailSection() {
       <div className="experience-detail-inner">
         <div className="experience-detail-content">
           <div className="experience-detail-left">
-            <div className="experience-detail-text-wrapper">
+            <div className="experience-detail-copy-wrapper">
               {exitingSlide && (
-                <div
-                  className="experience-detail-text-block experience-detail-text-exit"
-                  aria-hidden
-                >
-                  <h2 className="experience-detail-title">{exitingSlide.title}</h2>
-                  <p className="experience-detail-p1">{exitingSlide.paragraph1}</p>
-                  <p className="experience-detail-p2">{exitingSlide.paragraph2}</p>
-                  <div className="experience-detail-boxes">
-                    <div className="experience-detail-box">
-                      <span className="experience-detail-box-label">INTENSITY</span>
-                      <span className="experience-detail-box-value">{exitingSlide.intensity}</span>
-                    </div>
-                    <div className="experience-detail-box">
-                      <span className="experience-detail-box-label">GROUP SIZE</span>
-                      <span className="experience-detail-box-value">{exitingSlide.groupSize}</span>
-                    </div>
-                  </div>
-                </div>
+                <SlideCopy
+                  title={exitingSlide.title}
+                  paragraph1={exitingSlide.paragraph1}
+                  paragraph2={exitingSlide.paragraph2}
+                  ctaOverlayText={exitingSlide.ctaOverlayText}
+                  ctaButtonText={exitingSlide.ctaButtonText}
+                  className="experience-detail-copy-exit"
+                />
               )}
-              <div
-                className={`experience-detail-text-block experience-detail-text-current ${isEntering ? 'experience-detail-text-enter' : ''}`}
-              >
-                <h2 className="experience-detail-title">{displaySlide.title}</h2>
-                <p className="experience-detail-p1">{displaySlide.paragraph1}</p>
-                <p className="experience-detail-p2">{displaySlide.paragraph2}</p>
-                <div className="experience-detail-boxes">
-                  <div className="experience-detail-box">
-                    <span className="experience-detail-box-label">INTENSITY</span>
-                    <span className="experience-detail-box-value">{displaySlide.intensity}</span>
-                  </div>
-                  <div className="experience-detail-box">
-                    <span className="experience-detail-box-label">GROUP SIZE</span>
-                    <span className="experience-detail-box-value">{displaySlide.groupSize}</span>
-                  </div>
-                </div>
-              </div>
+              <SlideCopy
+                title={displaySlide.title}
+                paragraph1={displaySlide.paragraph1}
+                paragraph2={displaySlide.paragraph2}
+                ctaOverlayText={displaySlide.ctaOverlayText}
+                ctaButtonText={displaySlide.ctaButtonText}
+                className={`experience-detail-copy-current${isEntering ? ' experience-detail-copy-enter' : ''}`}
+              />
             </div>
           </div>
 
           <div className="experience-detail-right">
             <div className="experience-detail-media-card">
               <div className="experience-detail-media-wrap">
-                <img
-                  src={displaySlide.mediaImage}
-                  alt=""
-                  className="experience-detail-media-img"
-                  loading="lazy"
-                />
+                {isExperienceVideo(displaySlide.mediaImage) ? (
+                  <video
+                    key={displaySlide.mediaImage}
+                    src={displaySlide.mediaImage}
+                    poster={experiencePoster(displaySlide.mediaImage)}
+                    className="experience-detail-media-img"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden
+                  />
+                ) : (
+                  <img
+                    src={displaySlide.mediaImage}
+                    alt=""
+                    className="experience-detail-media-img"
+                    loading="lazy"
+                  />
+                )}
                 <div className="experience-detail-play-overlay" aria-hidden>
-                  <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+                  <span className="experience-detail-play-circle">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </span>
                 </div>
-              </div>
-              <div className="experience-detail-cta-overlay">
-                <p className="experience-detail-cta-text">{displaySlide.ctaOverlayText}</p>
-                <a href="/contact" className="experience-detail-cta-btn">
-                  {displaySlide.ctaButtonText}
-                </a>
               </div>
             </div>
             <div

@@ -73,7 +73,7 @@ export const EXPERIENCE_MASONRY_GALLERY: MasonryColumn[] = [
       {
         aspectRatio: '3 / 4',
         alt: 'Campus experience',
-        src: g[0],
+        src: g[3],
       },
     ],
   },

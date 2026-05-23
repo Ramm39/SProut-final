@@ -3,12 +3,13 @@ import HeroSection, { EXPERIENCE_HERO_VIDEO } from '../components/HeroSection'
 import ExperienceDetailSection from '../components/ExperienceDetailSection'
 import ExperienceCollageSection from '../components/ExperienceCollageSection'
 import StayInspiredSection from '../components/StayInspiredSection'
-import SiteFooter from '../components/SiteFooter'
+import SiteFooterGate from '../components/SiteFooterGate'
 import FullPageScroll from '../components/FullPageScroll'
+import './ExperiencePage.css'
 
 export default function ExperiencePage() {
   return (
-    <>
+    <div className="experience-page">
       <Navbar />
       <FullPageScroll>
         <main>
@@ -18,7 +19,7 @@ export default function ExperiencePage() {
               titleLine1="EXPERIENCE THE FUTURE"
               titleLine2="NOW...."
               ctaText="Learn More"
-              ctaHref="/#experience"
+              ctaHref="#experience-services"
               videoSrc={EXPERIENCE_HERO_VIDEO}
             />
           </div>
@@ -27,7 +28,7 @@ export default function ExperiencePage() {
         <ExperienceCollageSection />
         <StayInspiredSection />
       </FullPageScroll>
-      <SiteFooter />
-    </>
+      <SiteFooterGate />
+    </div>
   )
 }

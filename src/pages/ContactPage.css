@@ -1,4 +1,4 @@
-/* Contact page – cream field, vine + half-mandala assets (original artwork) */
+/* Contact page – cream field, vine + half-mandala assets (shown as-is) */
 
 .contact-page {
   min-height: 100vh;
@@ -20,7 +20,7 @@
   background: #faf8f2;
 }
 
-/* Vine – left, behind headline (black in asset knocks out via screen blend) */
+/* Vine – left, behind headline */
 .contact-hero-vine {
   position: absolute;
   top: -3%;
@@ -33,9 +33,6 @@
   object-position: left center;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: normal;
-  opacity: 1;
-  filter: brightness(0) saturate(100%) contrast(1.2);
 }
 
 .contact-hero-content {
@@ -84,7 +81,6 @@
 @media (max-width: 767px) {
   .contact-hero-vine {
     max-width: 45vw;
-    opacity: 0.38;
     left: -8vw;
   }
 }
@@ -114,8 +110,6 @@
   object-position: right bottom;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: screen;
-  opacity: 0.2;
   transform: scaleX(-1);
 }
 
@@ -133,13 +127,15 @@
 
 @media (min-width: 900px) {
   .contact-main-container {
-    grid-template-columns: minmax(340px, 0.8fr) minmax(620px, 1.2fr);
-    gap: clamp(0.9rem, 1.4vw, 1.25rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 2.5vw, 2rem);
   }
 }
 
 .contact-info {
   order: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 .contact-info-heading {
@@ -158,6 +154,17 @@
   color: #000;
   max-width: 22rem;
   margin: 0 0 clamp(1rem, 1.8vw, 1.5rem);
+}
+
+@media (min-width: 900px) {
+  .contact-info-p {
+    max-width: 100%;
+  }
+
+  /* Section 2 subtitle — full half-width so copy fits in three lines */
+  .contact-info-subheading + .contact-info-p {
+    max-width: 100%;
+  }
 }
 
 .contact-info-subheading {
@@ -203,10 +210,6 @@
   object-position: right center;
   margin-right: 0;
   transform: translateY(calc(-1 * min(11vh, 5.75rem)));
-  mix-blend-mode: normal;
-  opacity: 1;
-  filter: sepia(1) hue-rotate(347deg) saturate(4.4) brightness(1.12)
-    contrast(1.1);
 }
 
 .contact-form-card {
@@ -285,7 +288,6 @@
 
 @media (max-width: 899px) {
   .contact-main-vine {
-    opacity: 0.28;
     max-width: 42vw;
   }
 
@@ -295,7 +297,6 @@
 
   .contact-mandala-img {
     max-height: 540px;
-    opacity: 0.7;
     margin-left: -1rem;
     transform: translateY(calc(-1 * min(7vh, 3.5rem)));
   }

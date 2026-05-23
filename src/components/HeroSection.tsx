@@ -32,6 +32,8 @@ type HeroSectionProps = {
   titleLine1?: string
   /** Title line 2 (default: THAT LASTS) */
   titleLine2?: string
+  /** Optional line above the headline (e.g. softened page label) */
+  titleEyebrow?: string
   /** Hide background video and controls when page provides a shared video layer */
   showBackgroundVideo?: boolean
 }
@@ -43,6 +45,7 @@ export default function HeroSection({
   videoSrc = HERO_VIDEOS[0],
   titleLine1 = 'CRAFT MOMENTS',
   titleLine2 = 'THAT LASTS',
+  titleEyebrow,
   showBackgroundVideo = true,
 }: HeroSectionProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -71,12 +74,16 @@ export default function HeroSection({
             muted={isMuted}
             loop
             playsInline
+            preload="auto"
             aria-hidden
           />
         </div>
       )}
       <div className="hero-overlay" aria-hidden />
       <div className="hero-content">
+        {titleEyebrow ? (
+          <p className="hero-eyebrow">{titleEyebrow}</p>
+        ) : null}
         <h1 className="hero-title">
           <span className="hero-title-line1">{titleLine1}</span>
           <span className="hero-title-line2">{titleLine2}</span>

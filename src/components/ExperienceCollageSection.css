@@ -2,11 +2,11 @@
 
 .experience-collage {
   --masonry-bg: #0a1f1c;
-  --masonry-gap: 20px;
+  --masonry-gap: 24px;
   --masonry-radius: 32px;
   --masonry-max: 1440px;
-  --masonry-pad-x: 24px;
-  --masonry-pad-y: 80px;
+  --masonry-pad-x: clamp(24px, 4vw, 48px);
+  --masonry-pad-y: clamp(64px, 8vh, 96px);
 
   background: var(--masonry-bg);
   padding: var(--masonry-pad-y) var(--masonry-pad-x);
