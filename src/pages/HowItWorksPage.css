@@ -38,14 +38,14 @@
   background-attachment: scroll;
 }
 
+.how-it-works-page .stay-inspired-section {
+  background: transparent;
+}
+
 .how-it-works-page > footer,
 .how-it-works-page .site-footer {
   position: relative;
   z-index: 2;
-}
-
-.how-it-works-page .stay-inspired-section {
-  background: transparent;
 }
 
 .how-it-works-page .hero-overlay {
@@ -57,15 +57,14 @@
   );
 }
 
-#how-it-works-hero .hero-eyebrow {
-  margin: 0 0 0.75rem;
-  font-size: clamp(0.95rem, 2vw, 1.125rem);
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: rgba(255, 255, 255, 0.82);
-  text-transform: none;
-}
-
 #how-it-works-hero .hero-title {
   letter-spacing: -0.02em;
+}
+
+#how-it-works-hero .how-it-works-hero-accent {
+  background: linear-gradient(90deg, #c25115, #f79b60);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }

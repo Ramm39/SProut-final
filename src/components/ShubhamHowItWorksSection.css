@@ -1,8 +1,6 @@
 /* Shubham — second slide on How It Works (scoped; Montserrat + Playfair from index.html) */
 .shubham-hitw-section {
   width: 100%;
-  height: 100%;
-  min-height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,8 +15,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100%;
   height: 100%;
+  min-height: 0;
   width: 100%;
   background-color: var(--bg-color);
   font-family: Montserrat, sans-serif;
@@ -31,25 +29,32 @@
   box-sizing: border-box;
 }
 
+.hitw-viewport-inner {
+  width: 100%;
+  max-width: var(--content-max-wide);
+  margin: 0 auto;
+}
+
 .gemini-code-viewport {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  max-height: 100dvh;
+  min-height: 0;
+  max-height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding-left: 5vw;
+  padding-left: clamp(1rem, 5vw, 8vw);
 }
 
 .gemini-code-asset-top-left {
   position: absolute;
   top: 0;
   left: 0;
-  width: 52vw;
+  width: min(52vw, 860px);
   max-width: 860px;
   height: auto;
+  max-height: min(70dvh, 640px);
   z-index: 1;
   pointer-events: none;
   transform: translate(-10%, -10%);
@@ -59,35 +64,37 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  /* Shorter than full viewport — dark green headroom above the head */
-  height: 86%;
-  max-height: calc(100dvh - clamp(48px, 6.5vh, 100px));
+  height: auto;
+  max-height: min(94%, calc(100dvh - clamp(32px, 4vh, 72px)));
   width: auto;
+  min-width: unset;
+  max-width: min(42vw, 32rem);
   z-index: 2;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: bottom right;
 }
 
 .gemini-code-content-card {
   background-color: var(--card-bg);
-  width: 45vw;
+  width: min(45vw, 34rem);
   max-width: 550px;
-  height: 75%;
+  height: min(75%, 600px);
   max-height: 600px;
   min-height: 0;
-  padding: 5% 4%;
-  border-radius: 40px;
+  padding: clamp(1.25rem, 5%, 2.5rem) clamp(1rem, 4%, 2rem);
+  border-radius: clamp(24px, 3vw, 40px);
   z-index: 3;
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-left: clamp(16px, 2vw, 32px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
 }
 
 .gemini-code-header {
   text-align: right;
-  margin-bottom: 40px;
+  margin-bottom: clamp(1.25rem, 4vw, 2.5rem);
 }
 
 .gemini-code-title {
@@ -105,7 +112,7 @@
   font-weight: 700;
   font-size: clamp(0.7rem, 1vw, 0.95rem);
   letter-spacing: 1.5px;
-  margin-top: 10px;
+  margin-top: clamp(6px, 1vh, 10px);
 }
 
 .gemini-code-description {
@@ -116,15 +123,15 @@
 }
 
 .gemini-code-description p {
-  margin: 0 0 25px;
+  margin: 0 0 clamp(1rem, 2.5vh, 25px);
 }
 
 .gemini-code-progress-indicator {
   position: absolute;
-  bottom: 40px;
-  left: 50px;
-  width: 80px;
-  height: 7px;
+  bottom: clamp(1.25rem, 4vh, 2.5rem);
+  left: clamp(1.25rem, 4vw, 3.125rem);
+  width: clamp(60px, 8vw, 80px);
+  height: clamp(5px, 0.8vh, 7px);
   background: #e0e0da;
   border-radius: 10px;
 }
@@ -140,7 +147,7 @@
 
 @media (max-width: 768px) {
   .gemini-code-viewport {
-    padding-left: 4vw;
+    padding-left: clamp(0.75rem, 6vw, 6vw);
     align-items: flex-end;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
@@ -149,15 +156,24 @@
     width: min(92vw, 550px);
     height: auto;
     max-height: 55dvh;
+    margin-left: clamp(12px, 3vw, 28px);
     margin-bottom: 12vh;
     padding: 6% 5%;
   }
 
   .gemini-code-asset-subject {
-    height: 46%;
-    max-height: min(62dvh, calc(100dvh - clamp(80px, 18vh, 140px)));
+    height: auto;
+    max-height: min(68dvh, calc(100dvh - clamp(72px, 14vh, 120px)));
+    min-width: unset;
+    max-width: min(92vw, 100%);
     object-position: bottom center;
-    right: -5%;
+    right: -8%;
+    object-fit: contain;
+  }
+
+  .gemini-code-asset-top-left {
+    width: min(65vw, 520px);
+    max-height: min(45dvh, 400px);
   }
 
   .gemini-code-header {
@@ -165,7 +181,7 @@
   }
 
   .gemini-code-progress-indicator {
-    bottom: 24px;
-    left: 24px;
+    bottom: clamp(1rem, 3vh, 1.5rem);
+    left: clamp(1rem, 4vw, 1.5rem);
   }
 }

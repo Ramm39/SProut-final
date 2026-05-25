@@ -4,20 +4,28 @@
   --masonry-bg: #0a1f1c;
   --masonry-gap: 24px;
   --masonry-radius: 32px;
-  --masonry-max: 1440px;
+  --masonry-max: min(1440px, 96vw);
   --masonry-pad-x: clamp(24px, 4vw, 48px);
   --masonry-pad-y: clamp(64px, 8vh, 96px);
 
   background: var(--masonry-bg);
-  padding: var(--masonry-pad-y) var(--masonry-pad-x);
+  padding: clamp(1.25rem, 3vh, var(--masonry-pad-y)) var(--masonry-pad-x);
   box-sizing: border-box;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .experience-collage-inner {
   width: 100%;
   max-width: var(--masonry-max);
   margin: 0 auto;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
 }
 
 .experience-masonry-grid {
@@ -47,25 +55,18 @@
   display: block;
 }
 
-/* Horizontal scroll + scaled stagger on narrow viewports */
+/* Fit masonry in section on narrow viewports (no inner scroll) */
 @media (max-width: 1024px) {
   .experience-collage-inner {
-    max-width: none;
-    margin: 0;
+    max-width: var(--masonry-max);
+    margin: 0 auto;
     padding-right: var(--masonry-pad-x);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .experience-collage-inner::-webkit-scrollbar {
-    display: none;
+    overflow: hidden;
   }
 
   .experience-masonry-grid {
-    width: max-content;
-    grid-template-columns: repeat(5, minmax(180px, 220px));
+    width: 100%;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     padding-left: var(--masonry-pad-x);
     padding-right: var(--masonry-pad-x);
   }
@@ -94,6 +95,6 @@
   }
 
   .experience-masonry-grid {
-    grid-template-columns: repeat(5, minmax(148px, 168px));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }

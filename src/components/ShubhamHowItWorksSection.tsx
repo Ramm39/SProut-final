@@ -10,7 +10,7 @@ export default function ShubhamHowItWorksSection() {
       aria-labelledby="shubham-hitw-heading"
     >
       <div className="gemini-code-root">
-        <div className="gemini-code-viewport">
+        <div className="gemini-code-viewport hitw-viewport-inner">
           <img
             src={ASSET_TOP_LEFT}
             className="gemini-code-asset-top-left"

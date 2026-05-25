@@ -14,6 +14,22 @@
 
   /* Responsive base: 1rem = 16px at 100%; scales with zoom */
   font-size: 100%;
+
+  /* Breakpoints (document only; use in @media): sm 480, md 768, lg 900, xl 1024 */
+
+  /* Content ceilings (match home) */
+  --content-max-narrow: min(52rem, 92vw);
+  --content-max-wide: min(90rem, 96vw);
+  --content-max-hero: min(68rem, 92vw);
+  --slide-max-ultra: 100vw;
+
+  /* Fluid spacing scale */
+  --space-section-y: clamp(2rem, 8vh, 5rem);
+  --space-section-x: clamp(1.5rem, 5vw, 3rem);
+
+  /* Shared typography helpers */
+  --text-section-title: clamp(2rem, 4.5vw, 3.25rem);
+  --text-body: clamp(0.95rem, 1.35vw, 1.125rem);
 }
 
 a {
@@ -35,8 +51,34 @@ body {
   margin: 0;
   min-width: 280px;
   min-height: 100vh;
+  min-height: 100dvh;
   background-color: #faf8f2;
   overflow-x: hidden;
+}
+
+/* One section = one screen (homepage + Experience / How It Works / Contact) */
+.hero,
+.experience-categories,
+.home-feedback-process-slide,
+.mission-section,
+.our-story-section,
+.get-in-touch-section,
+.experience-detail.experience-detail-fullscreen,
+.experience-collage,
+.stay-inspired-section,
+.shubham-hitw-section,
+.prince-hitw-section,
+.our-story-hitw-section,
+.contact-hero,
+.contact-main {
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 h1,
@@ -70,4 +112,22 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Decorative / background videos — hide native play overlays and controls */
+video:not([controls]) {
+  pointer-events: none;
+}
+
+video::-webkit-media-controls {
+  display: none !important;
+}
+
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+video::-webkit-media-controls-overlay-play-button {
+  display: none !important;
 }

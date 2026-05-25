@@ -5,22 +5,21 @@
   --exp-detail-active-tab: #4cd98a;
   --exp-detail-radius-media: 44px;
   --exp-detail-radius-cta: 22px;
-  --exp-detail-max: 1320px;
+  --exp-detail-max: min(1320px, 96vw);
 
   background: var(--exp-detail-bg);
   color: #fff;
   padding: clamp(2rem, 4vh, 3rem) clamp(1.5rem, 5vw, 4.5rem)
     clamp(2.5rem, 5vh, 4rem);
-  min-height: 80vh;
+  min-height: 0;
   box-sizing: border-box;
   position: relative;
 }
 
 .experience-detail-fullscreen {
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .experience-detail-fullscreen .experience-detail-inner {
@@ -49,7 +48,7 @@
 
 .experience-detail-floating-nav .experience-detail-tabs {
   display: inline-flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: clamp(0.25rem, 0.6vw, 0.4rem);
   padding: clamp(0.4rem, 0.7vw, 0.55rem) clamp(0.65rem, 1.2vw, 0.9rem);
   background: rgba(0, 0, 0, 0.42);
@@ -85,15 +84,16 @@
   font-weight: 700;
 }
 
+.experience-detail-tab:focus,
+.experience-detail-tab:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
 @media (max-width: 640px) {
   .experience-detail-floating-nav .experience-detail-tabs {
-    overflow-x: auto;
-    scrollbar-width: none;
+    overflow: hidden;
     max-width: calc(100vw - 2rem);
-  }
-
-  .experience-detail-floating-nav .experience-detail-tabs::-webkit-scrollbar {
-    display: none;
   }
 }
 
@@ -274,30 +274,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.experience-detail-play-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.experience-detail-play-circle {
-  width: clamp(56px, 8vw, 72px);
-  height: clamp(56px, 8vw, 72px);
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.42);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-
-.experience-detail-play-circle svg {
-  margin-left: 4px;
 }
 
 /* Pagination — bottom-right, circular outline buttons */

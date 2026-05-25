@@ -227,13 +227,6 @@ export default function ExperienceDetailSection() {
                     loading="lazy"
                   />
                 )}
-                <div className="experience-detail-play-overlay" aria-hidden>
-                  <span className="experience-detail-play-circle">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                </div>
               </div>
             </div>
             <div

@@ -10,13 +10,13 @@ export default function PrinceHowItWorksSection() {
       aria-labelledby="prince-hitw-heading"
     >
       <div className="gemini4580747-root">
-        <div className="gemini4580747-viewport">
+        <div className="gemini4580747-viewport hitw-viewport-inner">
           <img
             src={ASSET_TOP_RIGHT}
             className="gemini4580747-asset-top-right"
             alt=""
-            width={860}
-            height={860}
+            width={620}
+            height={620}
             decoding="async"
           />
 

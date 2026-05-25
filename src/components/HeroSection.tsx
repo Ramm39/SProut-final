@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, type ReactNode } from 'react'
 
 /** Hero / overlay clips. Avoid >100MB sources so assets can live in `public/video` and ship with the site. */
 export const HERO_VIDEOS = [
@@ -31,7 +31,7 @@ type HeroSectionProps = {
   /** Title line 1 (default: CRAFT MOMENTS) */
   titleLine1?: string
   /** Title line 2 (default: THAT LASTS) */
-  titleLine2?: string
+  titleLine2?: ReactNode
   /** Optional line above the headline (e.g. softened page label) */
   titleEyebrow?: string
   /** Hide background video and controls when page provides a shared video layer */
@@ -43,23 +43,12 @@ export default function HeroSection({
   ctaHref = '#experience',
   ctaText = 'START ADVENTURE',
   videoSrc = HERO_VIDEOS[0],
-  titleLine1 = 'CRAFT MOMENTS',
-  titleLine2 = 'THAT LASTS',
+  titleLine1 = 'CRAFTING MOMENTS',
+  titleLine2 = 'THAT LASTS.',
   titleEyebrow,
   showBackgroundVideo = true,
 }: HeroSectionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(true)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-    if (isPlaying) video.play().catch(() => { })
-    else video.pause()
-  }, [isPlaying])
-
-  const togglePlayPause = () => setIsPlaying((p) => !p)
   const toggleMute = () => setIsMuted((m) => !m)
 
   return (
@@ -67,7 +56,6 @@ export default function HeroSection({
       {showBackgroundVideo && (
         <div className="hero-video-wrap">
           <video
-            ref={videoRef}
             className="hero-video"
             src={videoSrc}
             autoPlay
@@ -94,23 +82,6 @@ export default function HeroSection({
       </div>
       {showBackgroundVideo && (
         <div className="hero-controls">
-          <button
-            type="button"
-            className="hero-control-btn"
-            onClick={togglePlayPause}
-            aria-label={isPlaying ? 'Pause' : 'Play'}
-          >
-            {isPlaying ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <rect x="6" y="4" width="4" height="16" />
-                <rect x="14" y="4" width="4" height="16" />
-              </svg>
-            ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            )}
-          </button>
           <button
             type="button"
             className="hero-control-btn"

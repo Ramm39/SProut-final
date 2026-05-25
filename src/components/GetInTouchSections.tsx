@@ -19,7 +19,7 @@ export const CONTACT_EXPERIENCE_TYPES = [
 type ContactHeroSlideProps = {
   /** Homepage embeds hero as secondary section — use headingLevel 2 to avoid duplicate h1 */
   headingLevel?: 1 | 2
-  /** Anchors `#contact` (home full-page scroll). */
+  /** Optional section id for in-page anchors (e.g. `#contact` on homepage). */
   sectionId?: string
 }
 
@@ -30,7 +30,7 @@ export function ContactHeroSlide({ headingLevel = 1, sectionId }: ContactHeroSli
   return (
     <section
       id={sectionId}
-      className="contact-hero fullpage-section"
+      className="contact-hero"
       aria-labelledby="contact-hero-heading"
     >
       <img className="contact-hero-vine" src="/getintouch-1.png" alt="" aria-hidden />
@@ -69,7 +69,7 @@ export function ContactFormSlide() {
   }
 
   return (
-    <section className="contact-main fullpage-section" aria-label="Contact form">
+    <section className="contact-main" aria-label="Contact form">
       <img className="contact-main-vine" src="/getintouch-1.png" alt="" aria-hidden />
       <div className="contact-main-container">
         <div className="contact-info">

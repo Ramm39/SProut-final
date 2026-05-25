@@ -12,18 +12,16 @@ export default function ExperiencePage() {
     <div className="experience-page">
       <Navbar />
       <FullPageScroll>
-        <main>
-          <div className="experience-page-hero-wrap">
-            <HeroSection
-              id="experience-hero"
-              titleLine1="EXPERIENCE THE FUTURE"
-              titleLine2="NOW...."
-              ctaText="Learn More"
-              ctaHref="#experience-services"
-              videoSrc={EXPERIENCE_HERO_VIDEO}
-            />
-          </div>
-        </main>
+        <div className="experience-page-hero-wrap">
+          <HeroSection
+            id="experience-hero"
+            titleLine1="EXPERIENCE THE FUTURE"
+            titleLine2="NOW...."
+            ctaText="LEARN MORE"
+            ctaHref="#experience-services"
+            videoSrc={EXPERIENCE_HERO_VIDEO}
+          />
+        </div>
         <ExperienceDetailSection />
         <ExperienceCollageSection />
         <StayInspiredSection />

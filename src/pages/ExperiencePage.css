@@ -5,6 +5,10 @@
   z-index: 1;
 }
 
+.experience-page-hero-wrap {
+  overflow: hidden;
+}
+
 /* Brighter hero video with minimal dimming (match homepage treatment) */
 .experience-page-hero-wrap .hero-video {
   filter: brightness(1.08) contrast(1.05) saturate(1.06);
@@ -17,6 +21,14 @@
     rgba(0, 0, 0, 0.14) 45%,
     rgba(0, 0, 0, 0.2) 100%
   );
+}
+
+#experience-hero .hero-title-line2 {
+  background: linear-gradient(90deg, #8c52ff, #5ce1e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Services section fills the second full-page slide */

@@ -13,18 +13,21 @@ export default function HowItWorksPage() {
     <div className="how-it-works-page">
       <Navbar />
       <FullPageScroll>
-        <main>
-          <HeroSection
-            id="how-it-works-hero"
-            titleEyebrow="How it works"
-            titleLine1="One Voice."
-            titleLine2="One Belief."
-            ctaText="Start the Conversation"
-            ctaHref="/contact"
-            videoSrc={HOW_IT_WORKS_HERO_VIDEO}
-            showBackgroundVideo
-          />
-        </main>
+        <HeroSection
+          id="how-it-works-hero"
+          titleEyebrow=""
+          titleLine1="Humanizing The Brand"
+          titleLine2={
+            <>
+              One Voice.{' '}
+              <span className="how-it-works-hero-accent">One Belief.</span>
+            </>
+          }
+          ctaText="LEARN MORE"
+          ctaHref="/contact"
+          videoSrc={HOW_IT_WORKS_HERO_VIDEO}
+          showBackgroundVideo
+        />
         <ShubhamHowItWorksSection />
         <PrinceHowItWorksSection />
         <OurStoryHowItWorksSection />

@@ -23,7 +23,7 @@ const WHEEL_RESET_MS = 280
 const WHEEL_MIN_DELTA = 4
 const TOUCH_THRESHOLD = 72
 const ESCAPE_SCROLL_THRESHOLD = 6
-const TRANSITION_EASING = 'cubic-bezier(0.65, 0, 0.35, 1)'
+const TRANSITION_EASING = 'cubic-bezier(0.4, 0, 0.2, 1)'
 
 type FullPageScrollProps = {
   children: ReactNode

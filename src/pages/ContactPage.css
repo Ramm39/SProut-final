@@ -2,20 +2,25 @@
 
 .contact-page {
   min-height: 100vh;
+  min-height: 100dvh;
   background: #faf8f2;
   overflow-x: hidden;
+}
+
+.contact-hero,
+.contact-main {
+  overflow: hidden;
 }
 
 /* ========== Hero ========== */
 .contact-hero {
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
-  min-height: 100dvh;
+  container-type: size;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(4.5rem, 9vw, 7rem) clamp(1rem, 4vw, 3rem);
+  padding: clamp(4.5rem, 9cqmin, 7rem) clamp(1rem, 4cqmin, 3rem);
   box-sizing: border-box;
   background: #faf8f2;
 }
@@ -28,7 +33,7 @@
   left: clamp(-1.75rem, -2.5vw, -0.75rem);
   height: 106%;
   width: min(68vw, 860px);
-  max-width: none;
+  max-width: 860px;
   object-fit: contain;
   object-position: left center;
   pointer-events: none;
@@ -38,19 +43,19 @@
 .contact-hero-content {
   position: relative;
   z-index: 1;
-  max-width: 68rem;
+  max-width: var(--content-max-hero);
   margin: 0 auto;
   text-align: center;
 }
 
 .contact-hero-title {
-  font-size: clamp(2.25rem, 5.3vw, 4.8rem);
+  font-size: clamp(2.5rem, 10cqmin, 14rem);
   font-weight: 700;
   color: #000;
   text-transform: uppercase;
-  letter-spacing: 0.025em;
-  margin: 0 0 clamp(0.65rem, 2vw, 1.25rem);
-  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 clamp(0.9rem, 2.5cqmin, 1.5rem);
+  line-height: 1.1;
 }
 
 .contact-hero-title-accent {
@@ -70,7 +75,7 @@
 }
 
 .contact-hero-subtitle {
-  font-size: clamp(1.05rem, 2vw, 1.9rem);
+  font-size: clamp(1rem, 2.35cqmin, 1.9rem);
   font-weight: 400;
   line-height: 1.2;
   color: #000;
@@ -78,9 +83,9 @@
   max-width: 56rem;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .contact-hero-vine {
-    max-width: 45vw;
+    max-width: min(45vw, 320px);
     left: -8vw;
   }
 }
@@ -89,8 +94,6 @@
 .contact-main {
   position: relative;
   isolation: isolate;
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   align-items: center;
   padding: clamp(2rem, 4.5vw, 3.5rem) clamp(1rem, 4vw, 2.5rem);
@@ -116,7 +119,7 @@
 .contact-main-container {
   position: relative;
   z-index: 1;
-  max-width: 90rem;
+  max-width: var(--content-max-wide);
   width: 100%;
   margin: 0 auto;
   display: grid;
@@ -184,15 +187,16 @@
   display: flex;
   justify-content: flex-end;
   align-items: stretch;
-  min-height: min(78vh, 780px);
+  min-height: min(78dvh, 780px);
 }
 
 .contact-mandala-wrap {
   position: absolute;
   top: -2%;
   bottom: 0;
-  right: calc(min(100%, var(--contact-form-max-width)) - 240px);
+  right: calc(min(100%, var(--contact-form-max-width)) - clamp(8rem, 18vw, 240px));
   width: min(96vw, 980px);
+  max-width: 980px;
   display: flex;
   align-items: stretch;
   justify-content: flex-end;
@@ -202,10 +206,10 @@
 }
 
 .contact-mandala-img {
-  height: 128%;
-  max-height: none;
+  height: min(128%, calc(100dvh - 8rem));
+  max-height: min(920px, calc(100dvh - 6rem));
   width: auto;
-  max-width: none;
+  max-width: min(72vw, 720px);
   object-fit: contain;
   object-position: right center;
   margin-right: 0;
@@ -219,7 +223,7 @@
   background: #fff;
   max-width: var(--contact-form-max-width);
   margin-left: auto;
-  border-radius: 22px;
+  border-radius: clamp(16px, 2vw, 22px);
   padding: clamp(1.4rem, 2.2vw, 2rem);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   box-sizing: border-box;
@@ -265,7 +269,7 @@
 
 .contact-form-field textarea {
   resize: vertical;
-  min-height: 94px;
+  min-height: clamp(72px, 12vh, 94px);
 }
 
 .contact-form-submit {
@@ -286,7 +290,7 @@
   transform: translateY(-1px);
 }
 
-@media (max-width: 899px) {
+@media (max-width: 900px) {
   .contact-main-vine {
     max-width: 42vw;
   }

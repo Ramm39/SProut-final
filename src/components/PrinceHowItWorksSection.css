@@ -1,8 +1,6 @@
 /* Prince — slide below Shubham on How It Works */
 .prince-hitw-section {
   width: 100%;
-  height: 100%;
-  min-height: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -17,8 +15,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  min-height: 100%;
   height: 100%;
+  min-height: 0;
   width: 100%;
   background-color: var(--gemini4580747-bg-color);
   font-family: Montserrat, sans-serif;
@@ -31,57 +29,69 @@
   box-sizing: border-box;
 }
 
+.hitw-viewport-inner {
+  width: 100%;
+  max-width: var(--content-max-wide);
+  margin: 0 auto;
+}
+
 .gemini4580747-viewport {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 100%;
-  max-height: 100dvh;
+  min-height: 0;
+  max-height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 8vw;
+  padding-right: clamp(1rem, 5vw, 8vw);
 }
 
 .gemini4580747-asset-top-right {
   position: absolute;
   top: 0;
   right: 0;
-  width: 52vw;
-  max-width: 860px;
-  height: auto;
+  width: min(38vw, 620px);
+  max-width: 620px;
+  height: min(88dvh, 720px);
+  max-height: 720px;
+  object-fit: contain;
+  object-position: top right;
   z-index: 1;
   pointer-events: none;
-  transform: translate(10%, -10%);
+  transform: translate(8%, -8%);
 }
 
 .gemini4580747-asset-subject {
   position: absolute;
   left: 0;
   bottom: 0;
-  /* Shorter than full viewport so beige headroom shows above the head (see reference) */
-  height: 86%;
-  max-height: calc(100dvh - clamp(48px, 6.5vh, 100px));
+  margin: 0;
+  padding: 0;
+  height: auto;
   width: auto;
+  max-height: min(94%, calc(100dvh - clamp(32px, 4vh, 72px)));
+  max-width: min(42vw, 32rem);
   display: block;
   z-index: 2;
-  object-fit: cover;
+  object-fit: contain;
   object-position: bottom left;
 }
 
 .gemini4580747-content-card {
   background-color: var(--gemini4580747-card-bg);
-  width: 45vw;
-  max-width: 520px;
-  height: auto;
-  min-height: min(480px, 70dvh);
-  max-height: 85dvh;
-  padding: clamp(32px, 5vw, 60px) clamp(28px, 4vw, 50px);
-  border-radius: 40px;
+  width: min(45vw, 34rem);
+  max-width: 550px;
+  height: min(75%, 600px);
+  max-height: 600px;
+  min-height: 0;
+  padding: clamp(1.25rem, 5%, 2.5rem) clamp(1rem, 4%, 2rem);
+  border-radius: clamp(24px, 3vw, 40px);
   z-index: 3;
   display: flex;
   flex-direction: column;
   position: relative;
+  margin-right: clamp(16px, 2vw, 32px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
@@ -105,7 +115,7 @@
   font-weight: 700;
   font-size: clamp(0.7rem, 1vw, 0.95rem);
   letter-spacing: 2px;
-  margin-top: 10px;
+  margin-top: clamp(6px, 1vh, 10px);
 }
 
 .gemini4580747-description {
@@ -117,30 +127,41 @@
 }
 
 .gemini4580747-description p {
-  margin: 0 0 25px;
+  margin: 0 0 clamp(1rem, 2.5vh, 25px);
 }
 
 @media (max-width: 768px) {
   .gemini4580747-viewport {
-    padding-right: 4vw;
+    padding-right: clamp(0.75rem, 6vw, 6vw);
     align-items: flex-end;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
   .gemini4580747-content-card {
-    width: min(92vw, 520px);
-    max-height: 58dvh;
-    margin-bottom: 10vh;
+    width: min(92vw, 550px);
+    height: auto;
+    max-height: 55dvh;
+    margin-right: clamp(12px, 3vw, 28px);
+    margin-bottom: 12vh;
     min-height: 0;
     padding: 6% 5%;
   }
 
   .gemini4580747-asset-subject {
-    height: 46%;
-    max-height: min(62dvh, calc(100dvh - clamp(80px, 18vh, 140px)));
-    object-position: bottom center;
-    left: -6%;
-    object-fit: cover;
+    height: auto;
+    width: auto;
+    max-height: min(50dvh, calc(100dvh - clamp(72px, 14vh, 120px)));
+    max-width: min(72vw, 100%);
+    margin: 0;
+    padding: 0;
+    object-position: bottom left;
+    left: 0;
+    object-fit: contain;
+  }
+
+  .gemini4580747-asset-top-right {
+    width: min(55vw, 420px);
+    height: min(50dvh, 480px);
   }
 
   .gemini4580747-header {

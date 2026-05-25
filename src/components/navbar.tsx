@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useFullPageScroll } from './FullPageScrollContext';
 import './navbar.css';
@@ -16,7 +16,8 @@ const Navbar = ({ forceHidden = false, staticInHero = false }: NavbarProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
-  const { index, direction } = useFullPageScroll();
+  const { index, direction, pageScrollUnlocked } = useFullPageScroll();
+  const lastScrollYRef = useRef(0);
 
   const activeLink =
     pathname === '/experience'
@@ -35,7 +36,6 @@ const Navbar = ({ forceHidden = false, staticInHero = false }: NavbarProps) => {
   }, [isMobileMenuOpen]);
 
   useEffect(() => {
-    // Treat any slide beyond the first as "scrolled"
     setIsScrolled(index > 0);
 
     let nextVisible = isVisible;
@@ -48,13 +48,41 @@ const Navbar = ({ forceHidden = false, staticInHero = false }: NavbarProps) => {
       nextVisible = true;
     }
 
-    // On home and experience pages, keep navbar hidden on the 2nd slide (index 1)
     if ((pathname === '/' || pathname === '/experience') && index === 1) {
       nextVisible = false;
     }
 
-    setIsVisible(nextVisible);
-  }, [index, direction, pathname, isVisible]);
+    if (!pageScrollUnlocked) {
+      setIsVisible(nextVisible);
+    }
+  }, [index, direction, pathname, isVisible, pageScrollUnlocked]);
+
+  useEffect(() => {
+    if (!pageScrollUnlocked) {
+      lastScrollYRef.current = window.scrollY;
+      return;
+    }
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      if (Math.abs(delta) < 4) return;
+
+      if (delta > 0) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollYRef.current = currentY;
+      setIsScrolled(currentY > 8);
+    };
+
+    lastScrollYRef.current = window.scrollY;
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pageScrollUnlocked]);
 
   const navItems = [
     { id: 'home', label: 'Home', side: 'left' },
@@ -66,9 +94,12 @@ const Navbar = ({ forceHidden = false, staticInHero = false }: NavbarProps) => {
   const leftItems = navItems.filter((item) => item.side === 'left');
   const rightItems = navItems.filter((item) => item.side === 'right');
 
+  const hideNavbar =
+    !staticInHero && (!isVisible || forceHidden || ((pathname === '/' || pathname === '/experience') && index === 1));
+
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${!staticInHero && (!isVisible || forceHidden) ? 'hidden' : ''} ${staticInHero ? 'navbar--static-in-hero' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${hideNavbar ? 'hidden' : ''} ${staticInHero ? 'navbar--static-in-hero' : ''}`}>
         {/* Blur background element */}
         <div className="navbar-blur"></div>
 

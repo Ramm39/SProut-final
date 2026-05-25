@@ -168,7 +168,7 @@ function App() {
                   </section>
 
                   {/* Mission – full-viewport: left video + text + optional per-mission audio */}
-                  <section id="mission" className="mission-section fullpage-section">
+                  <section id="mission" className="mission-section">
                     <audio ref={missionAudioRef} loop playsInline aria-hidden />
                     <div className="mission-container">
                       <div className="mission-visual">
@@ -249,7 +249,7 @@ function App() {
                   </section>
 
                   {/* OUR STORY – white background, left text, right media card */}
-                  <section id="story" className="our-story-section fullpage-section">
+                  <section id="story" className="our-story-section">
                     <div className="our-story-container">
                       <div className="our-story-content">
                         <h2 className="our-story-heading">OUR STORY</h2>
@@ -287,7 +287,7 @@ function App() {
                   </section>
 
                   {/* GET IN TOUCH – immersive card (Stay Inspired proportions) */}
-                  <section id="contact" className="get-in-touch-section fullpage-section">
+                  <section id="contact" className="get-in-touch-section">
                     <div className="get-in-touch-wrapper">
                       <div className="get-in-touch-header">
                         <h2 className="get-in-touch-heading">GET IN TOUCH</h2>
@@ -313,11 +313,6 @@ function App() {
                             playsInline
                             aria-hidden
                           />
-                          <div className="get-in-touch-play" aria-hidden>
-                            <svg width="56" height="56" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M8 5v14l11-7z" />
-                            </svg>
-                          </div>
                         </div>
                         <div className="get-in-touch-overlay">
                           <p className="get-in-touch-text">
@@ -333,7 +328,6 @@ function App() {
                   </section>
                 </FullPageScroll>
 
-                {/* Footer – dark green, logo, contact, Services, Company, copyright bar */}
                 <SiteFooterGate />
               </>
             }

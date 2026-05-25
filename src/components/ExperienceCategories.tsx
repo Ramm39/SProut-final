@@ -141,31 +141,6 @@ export default function ExperienceCategories() {
     }, 300)
   }
 
-  // Wheel: advance through cards (full circular motion), then natural transition to next category
-  const wheelAccumRef = useRef(0)
-  const wheelTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-  const handleWheel = useCallback(
-    (e: React.WheelEvent) => {
-      if (isTransitioning) return
-      wheelAccumRef.current += e.deltaY
-      const threshold = 80
-      if (wheelAccumRef.current >= threshold) {
-        wheelAccumRef.current = 0
-        e.preventDefault()
-        goToNextCard()
-      } else if (wheelAccumRef.current <= -threshold) {
-        wheelAccumRef.current = 0
-        e.preventDefault()
-        goToPrevCard()
-      }
-      if (wheelTimeoutRef.current) clearTimeout(wheelTimeoutRef.current)
-      wheelTimeoutRef.current = setTimeout(() => {
-        wheelAccumRef.current = 0
-      }, 200)
-    },
-    [isTransitioning, goToNextCard, goToPrevCard]
-  )
-
   return (
     <section id="experience" className="experience-categories">
       <div className="experience-inner">
@@ -215,7 +190,6 @@ export default function ExperienceCategories() {
             className="experience-cards-wrap"
             onMouseEnter={() => setIsCarouselPaused(true)}
             onMouseLeave={() => setIsCarouselPaused(false)}
-            onWheel={handleWheel}
           >
             <div className="experience-cards-fade" aria-hidden />
             <div
