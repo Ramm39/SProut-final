@@ -32,7 +32,7 @@ export default function PrinceHowItWorksSection() {
           <div className="gemini4580747-content-card">
             <div className="gemini4580747-header">
               <h1 id="prince-hitw-heading" className="gemini4580747-title">
-                Prince Mehindpra
+                Prince Mendpra
               </h1>
               <div className="gemini4580747-role">CO-FOUNDER</div>
             </div>
